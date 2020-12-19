@@ -1,0 +1,26 @@
+#### enable dockerplugin in sbt
+1. add sbt native packager plugin to plugins.sbt under project
+addSbtPlugin("com.typesafe.sbt" % "sbt-native-packager" % "1.8.0")
+2. enable plugins in build.sbt
+lazy val root = (project in file(".")).enablePlugins(PlayScala,JavaAppPackaging,LauncherJarPlugin)
+LauncherJarPlugin is required for windows to be able to launch applications
+3. run sbt stage 
+4. then in target/uinversal/stage/bin we have the applications
+to run playdtreeservice 
+do 
+target/uinversal/stage/bin/playdtreeservice
+we will need to have the MLPLocation environmental variable set
+that is assinged to floc
+which we use in configuration to get the location of mleap zip package
+
+for docker run
+did sbt playUpdateSecret  to add the secret to application.conf file
+made modifications in build.sbt to change docker image name that is applied when we do sbt docker:publishLocal
+added some commands to include bash in the image
+sbt stage:docker
+that generates a Dockerfile
+check in target/docker/stage
+need the mleap zip file 
+so add to the Docerfile the zip file from the local file system
+copied it to directory 1 under stage
+now when we run the docker container we should have the application running in a docker container

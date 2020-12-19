@@ -1,0 +1,11 @@
+GET / controllers.HomeController.index
+GET /user/:name/:age  controllers.HomeController.getUser(name: String, age: Int)
+GET /hello/:name controllers.HomeController.hello(name)
+POST /user/addUser controllers.HomeController.addUser
+GET /sqrt/:num controllers.HomeController.sqrt(num)
+
+# configuration check
+GET /api/cfcheck controllers.HomeController.checkConfig
+GET /api/cvtpred/:dp controllers.CTPController.cvtpredict(dp: String)
+GET /api/cvtpredm controllers.CTPController.cvtpItems
+GET /api/cvtpredlist controllers.CTPController.cvtpListItems(item: List[String])
